@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloodLens Leaderboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo"><div class="logo-icon">🌊</div><span>FloodLens</span></div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="window.location.href='index.html'">Home</button>
+      <button class="nav-link" onclick="window.location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-link" onclick="window.location.href='reports.html'">Reports</button>
+      <button class="nav-link" onclick="window.location.href='blockchain.html'">Blockchain</button>
+      <button class="nav-link active" onclick="window.location.href='leaderboard.html'">Leaderboard</button>
+      <button class="nav-link" onclick="window.location.href='education.html'">Education</button>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <h1>FloodLens Leaderboard</h1>
+    <p>Community members gain points and tokens based on verified flood reports.</p>
+
+    <div class="leaderboard" id="leaderboard">
+      <!-- JS populates leaderboard here -->
+    </div>
+
+    <div class="leaderboard-actions">
+      <button class="btn btn-primary" onclick="updateLeaderboard()">🔁 Refresh Leaderboard</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

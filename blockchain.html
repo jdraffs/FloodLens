@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloodLens Blockchain Ledger</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo"><div class="logo-icon">🌊</div><span>FloodLens</span></div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="window.location.href='index.html'">Home</button>
+      <button class="nav-link" onclick="window.location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-link" onclick="window.location.href='reports.html'">Reports</button>
+      <button class="nav-link active" onclick="window.location.href='blockchain.html'">Blockchain</button>
+      <button class="nav-link" onclick="window.location.href='leaderboard.html'">Leaderboard</button>
+      <button class="nav-link" onclick="window.location.href='education.html'">Education</button>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <h1>Blockchain Ledger Simulation</h1>
+    <p>This page shows how your community reports are recorded in a simulated decentralized ledger.</p>
+
+    <div class="blockchain-container" id="blockchainContainer">
+      <!-- JS will generate mock blockchain blocks -->
+    </div>
+
+    <div class="blockchain-controls">
+      <button class="btn btn-primary" onclick="generateMockBlock()">🔗 Add Simulated Block</button>
+      <button class="btn btn-secondary" onclick="clearBlockchain()">🗑 Clear Ledger</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

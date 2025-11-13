@@ -1,11 +1,97 @@
-<html lang='en'>
-    <head>
-        <meta charset='UTF-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <title>An AI-Powered, Data-Driven, and Community-Enhanced Flood Awareness Platform</title>
-    </head>
-    <body>
-        <div id='root'></div>
-        <script type='module' src='/src/main.tsx'></script>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloodLens — Smart Flood Monitoring Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">🌊</div>
+      <span>FloodLens</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="window.location.href='index.html'">Home</button>
+      <button class="nav-link" onclick="window.location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-link" onclick="window.location.href='reports.html'">Reports</button>
+      <button class="nav-link" onclick="window.location.href='blockchain.html'">Blockchain</button>
+      <button class="nav-link" onclick="window.location.href='leaderboard.html'">Leaderboard</button>
+      <button class="nav-link" onclick="window.location.href='education.html'">Education</button>
+    </div>
+  </nav>
+
+  <!-- Landing Section -->
+  <section class="landing">
+    <h1>Welcome to <span>FloodLens</span></h1>
+    <p class="subtitle">AI-Driven Flood Prediction and Real-Time Community Reporting</p>
+    <p class="description">
+      FloodLens empowers communities to detect, report, and mitigate flood risks in real time.
+      Our system combines environmental data, simulated AI insights, and blockchain-secured
+      transparency to enhance disaster preparedness.
+    </p>
+
+    <div class="button-group">
+      <button class="btn btn-primary" onclick="window.location.href='dashboard.html'">
+        Enter Dashboard
+      </button>
+      <button class="btn btn-secondary" onclick="window.location.href='education.html'">
+        Learn More
+      </button>
+    </div>
+
+    <!-- Feature Highlights -->
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Real-Time Flood Data</h3>
+        <p>
+          Monitor simulated rainfall and water level data across multiple cities with live updates every 10 seconds.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI Flood Prediction</h3>
+        <p>
+          An AI-powered model (simulated for this prototype) estimates flood risks and issues early warnings based on rainfall trends.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⛓️</div>
+        <h3>Blockchain Transparency</h3>
+        <p>
+          All community reports and system updates are recorded on a mock blockchain ledger for traceability and trust.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>Community Reports</h3>
+        <p>
+          Users can submit flood reports anonymously, contributing to community-driven hazard awareness and token rewards.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>LensBot Assistant</h3>
+        <p>
+          Chat with LensBot to ask about local conditions, flood risks, or safety advice — all simulated for this demo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simple Footer -->
+  <footer style="text-align:center; padding: 2rem; color:#666;">
+    <p>© 2025 FloodLens Prototype | Developed for Research & Hackathon Presentation</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
 </html>

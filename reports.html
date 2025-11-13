@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloodLens Reports</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo"><div class="logo-icon">🌊</div><span>FloodLens</span></div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="window.location.href='index.html'">Home</button>
+      <button class="nav-link" onclick="window.location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-link active" onclick="window.location.href='reports.html'">Reports</button>
+      <button class="nav-link" onclick="window.location.href='blockchain.html'">Blockchain</button>
+      <button class="nav-link" onclick="window.location.href='leaderboard.html'">Leaderboard</button>
+      <button class="nav-link" onclick="window.location.href='education.html'">Education</button>
+    </div>
+  </nav>
+
+  <div class="reports-page">
+    <div class="page-header">
+      <h1>Community Flood Reports</h1>
+      <p>Submit simulated reports to test blockchain recording and leaderboard scoring.</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="reportLocation" placeholder="e.g., Parañaque City" />
+        </div>
+        <div class="form-group">
+          <label>Flood Severity</label>
+          <select id="reportSeverity">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Remarks</label>
+          <input type="text" id="reportRemarks" placeholder="Brief description..." />
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="submitReport()">📤 Submit Report</button>
+    </div>
+
+    <div class="report-list" id="reportList">
+      <!-- JS will append submitted reports here -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloodLens Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">🌊</div>
+      <span>FloodLens</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="window.location.href='index.html'">Home</button>
+      <button class="nav-link active" onclick="window.location.href='dashboard.html'">Dashboard</button>
+      <button class="nav-link" onclick="window.location.href='reports.html'">Reports</button>
+      <button class="nav-link" onclick="window.location.href='blockchain.html'">Blockchain</button>
+      <button class="nav-link" onclick="window.location.href='leaderboard.html'">Leaderboard</button>
+      <button class="nav-link" onclick="window.location.href='education.html'">Education</button>
+    </div>
+  </nav>
+
+  <div class="dashboard">
+    <div class="dashboard-header">
+      <h1>FloodLens Dashboard</h1>
+      <div class="dashboard-actions">
+        <button class="btn btn-primary" onclick="refreshData()">🔄 Refresh Data</button>
+        <button class="btn btn-secondary" onclick="openModal('floodTipsModal')">💡 Flood Safety Tips</button>
+      </div>
+    </div>
+
+    <div class="weather-alert" id="weatherAlert">
+      🌧️ Fetching latest rainfall simulation data...
+    </div>
+
+    <div class="dashboard-content">
+      <!-- Map + Locations -->
+      <div class="map-section">
+        <h2>Flood Map Simulation</h2>
+        <div class="map-container" id="mapContainer">Map Loading...</div>
+
+        <div class="location-cards" id="locationCards">
+          <!-- JS will generate simulated flood data -->
+        </div>
+      </div>
+
+      <!-- Sidebar (LensBot + Tips) -->
+      <aside class="sidebar">
+        <div class="assistant-card">
+          <div class="assistant-header">🤖 LensBot Assistant</div>
+          <div class="assistant-message" id="botResponse">
+            Hello! I’m LensBot. Ask me about current conditions or flood safety tips.
+          </div>
+
+          <div class="suggested-questions">
+            <button class="question-btn" onclick="askLensBot('What is the flood risk today?')">
+              What is the flood risk today?
+            </button>
+            <button class="question-btn" onclick="askLensBot('Which area has the highest rainfall?')">
+              Which area has the highest rainfall?
+            </button>
+            <button class="question-btn" onclick="askLensBot('How can I prepare for floods?')">
+              How can I prepare for floods?
+            </button>
+          </div>
+        </div>
+
+        <div class="tips-card">
+          <h3>💧 Flood Preparedness</h3>
+          <div class="tip-item">Keep an emergency kit with food, water, and first aid.</div>
+          <div class="tip-item">Avoid walking or driving through floodwaters.</div>
+          <div class="tip-item">Stay tuned to local alerts and weather updates.</div>
+          <div class="tip-item">Elevate important items and electricals if flooding occurs.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Flood Tips Modal -->
+  <div class="modal" id="floodTipsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>💡 Flood Safety Tips</h3>
+        <button class="close-btn" onclick="closeModal('floodTipsModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>Monitor weather forecasts regularly.</li>
+          <li>Move to higher ground during heavy rain.</li>
+          <li>Secure important documents in waterproof containers.</li>
+          <li>Charge your devices and have flashlights ready.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
