@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Navigation -->
+  <!--for now placeholder muna yung emojis-->
   <nav>
     <div class="logo">
       <div class="logo-icon">🌊</div>
@@ -37,65 +37,154 @@
     </div>
 
     <div class="dashboard-content">
-      <!-- Map + Locations -->
-      <div class="map-section">
-        <h2>Flood Map Simulation</h2>
-        <div class="map-container" id="mapContainer">Map Loading...</div>
+<!-- map + locations -->
+<div class="map-section">
+  <h2>Interactive Metro Manila Flood Map</h2>
+  <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+    Click on markers or area cards to view details • Drag to pan • Use controls to zoom
+  </p>
+  
+  <div class="map-container" id="mapContainer">
+    <div class="map-controls">
+      <button class="map-control-btn" onclick="zoomIn()">➕</button>
+      <button class="map-control-btn" onclick="zoomOut()">➖</button>
+      <button class="map-control-btn" onclick="resetMap()">🎯</button>
+    </div>
+    
+    <div class="map-canvas" id="mapCanvas">
+      <div class="map-markers" id="mapMarkers"></div>
+    </div>
+  </div>
+
+  <div class="location-cards" id="locationCards"></div>
+</div>
+
 
         <div class="location-cards" id="locationCards">
-          <!-- JS will generate simulated flood data -->
+          <!--js na mag gegenerate nung simulated flood data-->
         </div>
       </div>
 
-      <!-- Sidebar (LensBot + Tips) -->
-      <aside class="sidebar">
-        <div class="assistant-card">
-          <div class="assistant-header">🤖 LensBot Assistant</div>
-          <div class="assistant-message" id="botResponse">
-            Hello! I’m LensBot. Ask me about current conditions or flood safety tips.
+    <!-- sidebar-->
+    <aside class="sidebar">
+      <div class="assistant-card">
+        <div class="assistant-header">
+          <div class="assistant-title">LensBot Assistant</div>
+          <div class="assistant-time">06:00 AM</div>
+        </div>
+
+        <div class="chat-stage" id="chatStage">
+          <div class="welcome">
+            <div class="welcome-icon">🤖</div>
+            <div class="welcome-text">
+              Hello! I'm LensBot, your flood monitoring assistant. Ask me about flood risks, safety tips, AI predictions, anonymous reporting, or priority rescue zones!
+            </div>
           </div>
 
-          <div class="suggested-questions">
-            <button class="question-btn" onclick="askLensBot('What is the flood risk today?')">
-              What is the flood risk today?
-            </button>
-            <button class="question-btn" onclick="askLensBot('Which area has the highest rainfall?')">
-              Which area has the highest rainfall?
-            </button>
-            <button class="question-btn" onclick="askLensBot('How can I prepare for floods?')">
-              How can I prepare for floods?
-            </button>
+          <div id="chatMessages" class="chat-messages"></div>
+
+          <div class="typing" id="typingIndicator" aria-hidden="true">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
           </div>
         </div>
 
-        <div class="tips-card">
-          <h3>💧 Flood Preparedness</h3>
-          <div class="tip-item">Keep an emergency kit with food, water, and first aid.</div>
-          <div class="tip-item">Avoid walking or driving through floodwaters.</div>
-          <div class="tip-item">Stay tuned to local alerts and weather updates.</div>
-          <div class="tip-item">Elevate important items and electricals if flooding occurs.</div>
+        <div class="suggested-questions">
+          <button class="qbtn" onclick="askLensBot('What\\'s the flood prediction in Manila right now?')">What's the flood prediction in Manila right now?</button>
+          <button class="qbtn" onclick="askLensBot('Show me priority rescue zones')">Show me priority rescue zones</button>
+          <button class="qbtn" onclick="askLensBot('Give me safety tips for pregnant women during floods')">Give me safety tips for pregnant women during floods</button>
         </div>
-      </aside>
-    </div>
-  </div>
 
-  <!-- Flood Tips Modal -->
-  <div class="modal" id="floodTipsModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>💡 Flood Safety Tips</h3>
-        <button class="close-btn" onclick="closeModal('floodTipsModal')">&times;</button>
+        <div class="chat-input">
+          <input id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendChatMessage()" />
+          <button id="chatSend" onclick="sendChatMessage()">➤</button>
+        </div>
       </div>
-      <div class="modal-body">
-        <ul>
-          <li>Monitor weather forecasts regularly.</li>
-          <li>Move to higher ground during heavy rain.</li>
-          <li>Secure important documents in waterproof containers.</li>
-          <li>Charge your devices and have flashlights ready.</li>
+
+      <div class="tips-card">
+        <h3>💧 FloodLens Tips</h3>
+        <ul class="tips-list">
+          <li>Monitor rainfall levels regularly during rainy season</li>
+          <li>Evacuate immediately when status reaches "Flooded"</li>
+          <li>Keep emergency supplies ready: food, water, flashlight, first aid</li>
+          <li>Never walk or drive through flooded areas</li>
+          <li>Stay informed through official weather updates</li>
+          <li>Know your evacuation routes and nearest shelters</li>
+          <li>Keep important documents in waterproof containers</li>
+          <li>Report incidents through the Reports page</li>
         </ul>
       </div>
+    </aside>
+
+  <!-- area detail modal -->
+<div class="modal" id="areaDetailModal">
+  <div class="modal-content" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3 id="modalAreaName">Area Details</h3>
+      <button class="close-btn" onclick="closeModal('areaDetailModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="status-badge" id="modalStatusBadge">Normal</div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+          <div class="metric">
+            <div class="metric-label">💧 Rainfall Level</div>
+            <div class="metric-value" id="modalRainfall">-- mm/hr</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">🌊 Water Level</div>
+            <div class="metric-value" id="modalWaterLevel">-- cm</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>✨ LensBot Insights</h3>
+        <div class="assistant-message" id="modalLensBotInsights">
+          Analyzing current conditions...
+        </div>
+      </div>
+
+      <div class="modal-section" id="modalSafetyAlert"></div>
+
+      <div class="modal-section">
+        <h3>📊 Risk Assessment</h3>
+        <div class="info-box">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <strong>Current Risk Level</strong>
+            <span id="modalRiskLevel" style="font-weight: bold; color: #10b981;">Low Risk</span>
+          </div>
+          <div style="font-size: 0.9rem; color: #666;">
+            <div>• Normal: &lt;30 mm/hr</div>
+            <div>• Watch: 30-50 mm/hr</div>
+            <div>• Flooded: ≥50 mm/hr</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>📈 AI Prediction</h3>
+        <div class="prediction">
+          <div class="prediction-title">Next Hour Forecast</div>
+          <div id="modalPrediction">Analyzing trends...</div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>🕐 Recent Status Changes</h3>
+        <div id="modalStatusHistory" style="font-size: 0.9rem; color: #666;">
+          No status changes recorded yet
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <p style="color: #999; font-size: 0.85rem; margin-top: 1rem;">
+          ⏰ Last updated: <span id="modalLastUpdated">--</span>
+        </p>
+      </div>
     </div>
   </div>
+</div>
 
   <script src="script.js"></script>
 </body>

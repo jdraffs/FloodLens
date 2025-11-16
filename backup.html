@@ -1,0 +1,49 @@
+    <!-- sidebar-->
+    <aside class="sidebar">
+      <div class="assistant-card">
+        <div class="assistant-header">
+          <div class="assistant-title">LensBot Assistant</div>
+          <div class="assistant-time">06:00 AM</div>
+        </div>
+
+        <div class="chat-stage" id="chatStage">
+          <div class="welcome">
+            <div class="welcome-icon">🤖</div>
+            <div class="welcome-text">
+              Hello! I'm LensBot, your flood monitoring assistant. Ask me about flood risks, safety tips, AI predictions, anonymous reporting, or priority rescue zones!
+            </div>
+          </div>
+
+          <div id="chatMessages" class="chat-messages"></div>
+
+          <div class="typing" id="typingIndicator" aria-hidden="true">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+
+        <div class="suggested-questions">
+          <button class="qbtn" onclick="askLensBot('What\\'s the flood prediction in Manila right now?')">What's the flood prediction in Manila right now?</button>
+          <button class="qbtn" onclick="askLensBot('Show me priority rescue zones')">Show me priority rescue zones</button>
+          <button class="qbtn" onclick="askLensBot('Give me safety tips for pregnant women during floods')">Give me safety tips for pregnant women during floods</button>
+        </div>
+
+        <div class="chat-input">
+          <input id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendChatMessage()" />
+          <button id="chatSend" onclick="sendChatMessage()">➤</button>
+        </div>
+      </div>
+
+      <div class="tips-card">
+        <h3>💧 FloodLens Tips</h3>
+        <ul class="tips-list">
+          <li>Monitor rainfall levels regularly during rainy season</li>
+          <li>Evacuate immediately when status reaches "Flooded"</li>
+          <li>Keep emergency supplies ready: food, water, flashlight, first aid</li>
+          <li>Never walk or drive through flooded areas</li>
+          <li>Stay informed through official weather updates</li>
+          <li>Know your evacuation routes and nearest shelters</li>
+          <li>Keep important documents in waterproof containers</li>
+          <li>Report incidents through the Reports page</li>
+        </ul>
+      </div>
+    </aside>
